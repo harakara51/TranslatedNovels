@@ -1,0 +1,26 @@
+body {
+
+background-image:  url('images/Dragon2.jpg'); 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+.languangeForm{
+padding: 1em;
+
+}
+
+#language {
+margin: 1em auto;	
+}
+#selectLanguage {
+margin:1em auto;
+padding: 1em;		
+}
+#box1 {
+padding: 3em;	
+	
+}
