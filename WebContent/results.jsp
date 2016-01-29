@@ -27,6 +27,7 @@
 				<ul class="right hide-on-med-and-down">
 					<li><a href="index.jsp">Home</a></li>
 					<li><a href="addNovel.jsp">Add a Novel</a></li>
+					<li><a href="results3.jsp">Reading list</a></li>
 					<li><a href="About.html">About us</a></li>
 
 				</ul>
@@ -39,7 +40,7 @@
 				<div class="col s12 m6" id="result1">
 					<div class="card blue lighten-3" id="card-table1">
 						<div class="card-content Black-text">
-							<table class="bordered" id="table1">
+							<table id="table1">
 								<thead>
 									<tr>
 										<th data-field="id">Novel Name</th>
@@ -57,13 +58,33 @@
 											<td>${temp.genre}</td>
 											<td>${temp.rating }</td>
 										
-											<td> 
-											<a class="btn-floating btn-large waves-effect waves-light red" name ="readmore" value = "${temp.novelName}">
-											<i class="material-icons">add</i></a>
+											<td rowspan ="2"> 
+											<form id ="readmore" action="GetNovel.do" method="GET">
+											<button class="btn-floating btn-large waves-effect waves-light red" value="${temp.novelName}"
+								type="submit" name ="addtoReadingList" id ="addtoRL">
+								+ <i class="material-icons right">send</i>
+											
+											<%-- <a  type ="submit" class="btn-floating btn-large waves-effect waves-light red" name ="addtoReadingList" value = "${temp.novelName}">
+											<i class="material-icons">add</i></a> --%>
+											</form>
 											</td>
 											
 										</tr>
-										<tr>  
+										<tr id ="readMore"> 
+										<td colspan="4"> 
+										<form id ="readmore" action="GetNovel.do" name ="readmore"  value="${temp.novelName}" method="GET">
+										<button class="btn waves-effect waves-light blue darken-2" value="${temp.novelName}"
+								type="submit" name ="ReadMORE" id ="languageButton">
+								Read More <i class="material-icons right">send</i>
+										<%-- 	    <button class="btn waves-effect waves-light blue darken-2" value="${temp.novelName}"
+											type="submit" id ="ReadMOREButton">
+								 --%>
+								 </button>
+								</form>
+											</td>
+									
+									
+										</tr> 
 									</tbody>
 								</c:forEach>
 							</table>
@@ -104,6 +125,8 @@
 						</div>
 					</div>
 				</div>
+				
+
 			</div>
 
 		</c:when>

@@ -7,7 +7,6 @@ import Data.NovelBean;
 import Data.NovelDAO;
 import Data.NovelFileDAO;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,61 +17,67 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@SessionAttributes({"IDCounter, readingList, masterlist"})
+@SessionAttributes({ "IDCounter","readingList","masterlist" })
 public class NovelController
 {
 	@Autowired
 	private NovelDAO NovelDAO;
-	
+
 	@ModelAttribute("IDCounter")
 	public int createCounterObject()
 	{
 		int counter = 24;
 		return counter;
 	}
-	
+
 	@ModelAttribute("readingList")
 	public List<NovelBean> createReadingListObject()
 	{
+		
 		List<NovelBean> readingList = new ArrayList<>();
 		return readingList;
 	}
 	@ModelAttribute("masterlist")
 	public List<NovelBean> createMastList()
 	{
-		List<NovelBean> masterList = NovelDAO.getNovels();
+		System.out.println("in creating masterlist");
+		List<NovelBean> masterList = new ArrayList<>();
+		//List<NovelBean> temp2 = NovelDAO.getNovels();
+		
 		return masterList;
 	}
-	
+
 	@RequestMapping(path = "GetNovel.do", params = "language", method = RequestMethod.GET)
 	public ModelAndView getByName(@RequestParam("language") String language)
 	{
 		ModelAndView mv = new ModelAndView();
-		//System.out.println("In controller and size of array is" +  NovelDAO.getNovelByLanguage(language).size());
+		// System.out.println("In controller and size of array is" +
+		// NovelDAO.getNovelByLanguage(language).size());
 		mv.setViewName("results.jsp");
 		mv.addObject("NovelsByLanguage", NovelDAO.getNovelByLanguage(language));
-		
+
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "GetNovel.do", params = "genre", method = RequestMethod.GET)
 	public ModelAndView getByGenre(@RequestParam("genre") String Genre)
 	{
 		ModelAndView mv = new ModelAndView();
-		//System.out.println("In controller and size of array is" +  NovelDAO.getNovelByLanguage(language).size());
+		// System.out.println("In controller and size of array is" +
+		// NovelDAO.getNovelByLanguage(language).size());
 		mv.setViewName("results.jsp");
 		mv.addObject("NovelsByGenre", NovelDAO.getNovelByGenre(Genre));
-		
+
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "GetNovel.do", params = "rating", method = RequestMethod.GET)
 	public ModelAndView getByRating(@RequestParam("rating") Double rating)
 	{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("results.jsp");
 		mv.addObject("NovelsByRating", NovelDAO.getNovelByRating(rating));
-		
+
 		return mv;
 	}
 	@RequestMapping(path = "GetNovel.do", params = "random", method = RequestMethod.GET)
@@ -82,26 +87,59 @@ public class NovelController
 		Collections.shuffle(NovelDAO.getNovels());
 		mv.setViewName("results.jsp");
 		mv.addObject("RandomNovel", NovelDAO.getNovels().get(0));
-		
+
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "Novel.do", params = "submitNovel", method = RequestMethod.POST)
-	public ModelAndView getAddNewNovel(NovelBean novelBean, @ModelAttribute("masterList") ArrayList<NovelBean> masterList,@ModelAttribute("IDCounter") int counter )
+	public ModelAndView getAddNewNovel(NovelBean novelBean,
+			@ModelAttribute("masterList") ArrayList<NovelBean> masterList, @ModelAttribute("IDCounter") int counter)
 	{
-		System.out.println("in adding novel method");
-		System.out.println(counter);
+	System.out.println("in adding novel method");
+	System.out.println(counter);
 		novelBean.setID(counter);
+		List<NovelBean> temp2 = NovelDAO.getNovels();
+		for (NovelBean novelBean2 : temp2)
+		{
+			masterList.add(novelBean2);
+		}
+		
+		temp2.add(novelBean);		
 		counter++;
 		System.out.println(masterList.size());
 		masterList.add(novelBean);
-		System.out.println(masterList.size());
+		
+	System.out.println(masterList.size() + temp2.size());
 		ModelAndView mv = new ModelAndView();
-		Collections.shuffle(NovelDAO.getNovels());
+		
 		mv.setViewName("results.jsp");
 		mv.addObject("IDCounter", counter);
-		
+
 		return mv;
 	}
 	
+	@RequestMapping(path = "GetNovel.do", params = "ReadMORE", method = RequestMethod.GET)
+	public ModelAndView getDisplayNovel(@RequestParam("ReadMORE") String novel)
+	{	
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("result2.jsp");
+		mv.addObject("Novel", NovelDAO.getNovelByName(novel));
+
+		return mv;
+	}
+	
+	@RequestMapping(path = "GetNovel.do", params = "addtoReadingList", method = RequestMethod.GET)
+	public ModelAndView getReadingLIst(@RequestParam("addtoReadingList") String novel, @ModelAttribute("readingList") ArrayList<NovelBean> List)
+	{
+
+	
+		List.add(NovelDAO.getNovelByName(novel));
+		System.out.println("the size of the reading list is now : " + List.size());
+		ModelAndView mv = new ModelAndView();
+	mv.setViewName("results3.jsp");
+//		mv.addObject("readinglist2", NovelDAO.getNovelByName(novel));
+
+		return mv;
+	}
+
 }

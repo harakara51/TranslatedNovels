@@ -26,6 +26,7 @@
 					<li class="active"><a href="index.jsp">Home</a></li>
 					<li><a href="addNovel.jsp">Add a Novel</a></li>
 					<li><a href="About.html">About us</a></li>
+					 
 
 				</ul>
 			</div>

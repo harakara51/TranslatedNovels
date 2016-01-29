@@ -234,7 +234,10 @@ public class NovelBean
 	 */
 	public void setRating(Double rating)
 	{
-		this.rating = rating;
+		int count =10;
+		count++;
+		this.rating = ((this.rating*count) + rating)/count;
+
 	}
 
 

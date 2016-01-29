@@ -118,7 +118,7 @@ public class NovelFileDAO implements NovelDAO
 
 			}
 	}
-		System.out.println(NovelsbyLanguage.size());
+		
 		return NovelsbyLanguage;
 	}
 
