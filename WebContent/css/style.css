@@ -8,6 +8,7 @@ background-image:  url('images/Dragon2.jpg');
 
 }
 
+
 .languangeForm{
 padding: 1em;
 
@@ -24,3 +25,17 @@ padding: 1em;
 padding: 3em;	
 	
 }
+#result1 {
+margin: 0 auto;	
+}
+ #card-table1 {
+	margin-left:  3em;
+
+} 
+
+#card-table3{
+
+margin: 3em;	
+	
+}
+

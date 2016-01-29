@@ -2,7 +2,7 @@ package Data;
 
 public class NovelBean
 {
-	private String ID;
+	private int ID;
 	private String novelName;
 	private String author;
 	private String Translator;
@@ -21,7 +21,7 @@ public class NovelBean
 	}
 	
 	
-	public NovelBean(String ID, String novelName, String author, String translator, String translationProgress, String link,
+	public NovelBean(int ID, String novelName, String author, String translator, String translationProgress, String link,
 			String language, String translationStatus, String genre, String sypnosis,String tags,  Double rating)
 	{
 		super();
@@ -241,7 +241,7 @@ public class NovelBean
 	/**
 	 * @return the iD
 	 */
-	public String getID()
+	public int getID()
 	{
 		return ID;
 	}
@@ -250,7 +250,7 @@ public class NovelBean
 	/**
 	 * @param iD the iD to set
 	 */
-	public void setID(String iD)
+	public void setID(int iD)
 	{
 		ID = iD;
 	}

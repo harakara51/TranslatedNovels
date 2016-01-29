@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface NovelDAO
 {
-		public int getNovelByID(String name);
+		public int getNovelByID(int ID);
 		public NovelBean getNovelByName(String name);
 		public List<NovelBean> getNovels();
 		public List<NovelBean> getNovelByLanguage(String language);

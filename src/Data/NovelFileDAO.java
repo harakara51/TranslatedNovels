@@ -14,7 +14,7 @@ import org.springframework.context.ApplicationContext;
 public class NovelFileDAO implements NovelDAO
 {
 
-	private static final String FILE_NAME = "/WEB-INF/NovelList3.csv";
+	private static final String FILE_NAME = "/WEB-INF/NovelList4.csv";
 	private List<NovelBean> NovelsbyLanguage = new ArrayList<>();
 	private List<NovelBean> NovelsbyRating = new ArrayList<>();
 	private List<NovelBean> NovelsbyGenre = new ArrayList<>();
@@ -47,11 +47,11 @@ public class NovelFileDAO implements NovelDAO
 			//	System.out.println("in File Reader");
 				String[] tokens = line.split(",");
 			//	System.out.print( "read name :" +tokens[1]);
-				String ID = tokens[0];
+				int ID = Integer.parseInt(tokens[0]);
 				String name = tokens[1];
 			//	System.out.print( "read name :" +tokens[1]);
 				String author = tokens[2];
-				System.out.print( "read author :" +tokens[2]);
+				//System.out.print( "read author :" +tokens[2]);
 				String translator = tokens[3];
 				//System.out.print( "read translator :" +tokens[3]);
 				String translatorProgress = tokens[4];
@@ -75,14 +75,14 @@ public class NovelFileDAO implements NovelDAO
 	}
 
 	@Override
-	public int getNovelByID(String name)
+	public int getNovelByID(int ID)
 	{
 		for (NovelBean novelBean : Novels)
 		{
-			if ((novelBean.getNovelName().trim()).equals(name.trim()))
+			if ((novelBean.getID())==(ID))
 			{
-				int ID = Integer.parseInt(novelBean.getID());
-				return ID;
+				int ID2 = novelBean.getID();
+				return ID2;
 
 			}
 	}
@@ -176,6 +176,11 @@ public class NovelFileDAO implements NovelDAO
 	{
 		
 		return Novels;
+	}
+	public void addNovels(NovelBean newNovel)
+	{
+	Novels.add(newNovel)	;
+		
 	}
 
 }

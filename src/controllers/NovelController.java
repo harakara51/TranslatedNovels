@@ -18,17 +18,37 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@SessionAttributes({"IDCounter, readingList, masterlist"})
 public class NovelController
 {
 	@Autowired
 	private NovelDAO NovelDAO;
-
+	
+	@ModelAttribute("IDCounter")
+	public int createCounterObject()
+	{
+		int counter = 24;
+		return counter;
+	}
+	
+	@ModelAttribute("readingList")
+	public List<NovelBean> createReadingListObject()
+	{
+		List<NovelBean> readingList = new ArrayList<>();
+		return readingList;
+	}
+	@ModelAttribute("masterlist")
+	public List<NovelBean> createMastList()
+	{
+		List<NovelBean> masterList = NovelDAO.getNovels();
+		return masterList;
+	}
 	
 	@RequestMapping(path = "GetNovel.do", params = "language", method = RequestMethod.GET)
 	public ModelAndView getByName(@RequestParam("language") String language)
 	{
 		ModelAndView mv = new ModelAndView();
-		System.out.println("In controller and size of array is" +  NovelDAO.getNovelByLanguage(language).size());
+		//System.out.println("In controller and size of array is" +  NovelDAO.getNovelByLanguage(language).size());
 		mv.setViewName("results.jsp");
 		mv.addObject("NovelsByLanguage", NovelDAO.getNovelByLanguage(language));
 		
@@ -50,7 +70,6 @@ public class NovelController
 	public ModelAndView getByRating(@RequestParam("rating") Double rating)
 	{
 		ModelAndView mv = new ModelAndView();
-		System.out.println("In controller, in rating method and size of array is" +  NovelDAO.getNovelByRating(rating).size());
 		mv.setViewName("results.jsp");
 		mv.addObject("NovelsByRating", NovelDAO.getNovelByRating(rating));
 		
@@ -63,6 +82,24 @@ public class NovelController
 		Collections.shuffle(NovelDAO.getNovels());
 		mv.setViewName("results.jsp");
 		mv.addObject("RandomNovel", NovelDAO.getNovels().get(0));
+		
+		return mv;
+	}
+	
+	@RequestMapping(path = "Novel.do", params = "submitNovel", method = RequestMethod.POST)
+	public ModelAndView getAddNewNovel(NovelBean novelBean, @ModelAttribute("masterList") ArrayList<NovelBean> masterList,@ModelAttribute("IDCounter") int counter )
+	{
+		System.out.println("in adding novel method");
+		System.out.println(counter);
+		novelBean.setID(counter);
+		counter++;
+		System.out.println(masterList.size());
+		masterList.add(novelBean);
+		System.out.println(masterList.size());
+		ModelAndView mv = new ModelAndView();
+		Collections.shuffle(NovelDAO.getNovels());
+		mv.setViewName("results.jsp");
+		mv.addObject("IDCounter", counter);
 		
 		return mv;
 	}

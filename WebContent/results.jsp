@@ -22,118 +22,159 @@
 <body>
 	<div class="navbar-fixed">
 		<nav>
-		<div class="nav-wrapper green darken-3">
-			<a href="#!" class="brand-logo">Transalated Novels</a>
-			<ul class="right hide-on-med-and-down">
-				<li class="active"><a href="collapsible.html">Home</a></li>
-				<li><a href="About.html">About us</a></li>
+			<div class="nav-wrapper green darken-3">
+				<a href="#!" class="brand-logo">Transalated Novels</a>
+				<ul class="right hide-on-med-and-down">
+					<li><a href="index.jsp">Home</a></li>
+					<li><a href="addNovel.jsp">Add a Novel</a></li>
+					<li><a href="About.html">About us</a></li>
 
-			</ul>
-		</div>
+				</ul>
+			</div>
 		</nav>
 	</div>
 	<c:choose>
 		<c:when test="${! empty NovelsByLanguage}">
-			<table>
-				<thead>
-					<tr>
-						<th>Novel Name</th>
-						<th>Author</th>
-						<th>Genre</th>
-						<th>Rating</th>
-					</tr>
-				</thead>
-
-				<c:forEach var="temp" items="${NovelsByLanguage}">
-
-					<tbody>
-						<tr>
-							<td><a href="${temp.link}">${temp.novelName}</a></td>
-
-							<td>${temp.author}</td>
-							<td>${temp.genre}</td>
-							<td>${temp.rating }</td>
-						</tr>
-					</tbody>
-				</c:forEach>
-				</div>
-				</c:when>
-				</c:choose>
-				<c:choose>
-					<c:when test="${! empty NovelsByGenre}">
-						<table>
-							<thead>
-								<tr>
-									<th>Novel Name</th>
-									<th>Author</th>
-									<th>Genre</th>
-									<th>Rating</th>
-								</tr>
-							</thead>
-
-							<c:forEach var="temp" items="${NovelsByGenre}">
-								<tbody>
+			<div class="row" id="row1">
+				<div class="col s12 m6" id="result1">
+					<div class="card blue lighten-3" id="card-table1">
+						<div class="card-content Black-text">
+							<table class="bordered" id="table1">
+								<thead>
 									<tr>
-										<td><a href="${temp.link}">${temp.novelName}</a></td>
-										<td>${temp.author}</td>
-										<td>${temp.genre}</td>
-										<td>${temp.rating }</td>
+										<th data-field="id">Novel Name</th>
+										<th data-field="name">Author</th>
+										<th data-field="name">Genre</th>
+										<th data-field="name">Rating</th>
+										<th data-field="name">Add to Reading list</th>
 									</tr>
-								</tbody>
-							</c:forEach>
-							</div>
-							</c:when>
-							</c:choose>
+								</thead>
+								<c:forEach var="temp" items="${NovelsByLanguage}">
+									<tbody>
+										<tr>
+											<td><a href="${temp.link}">${temp.novelName}</a></td>
+											<td>${temp.author}</td>
+											<td>${temp.genre}</td>
+											<td>${temp.rating }</td>
+										
+											<td> 
+											<a class="btn-floating btn-large waves-effect waves-light red" name ="readmore" value = "${temp.novelName}">
+											<i class="material-icons">add</i></a>
+											</td>
+											
+										</tr>
+										<tr>  
+									</tbody>
+								</c:forEach>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:when>
+	</c:choose>
+	<c:choose>
 
 
-							<c:choose>
-								<c:when test="${! empty NovelsByRating}">
-									<table>
-										<thead>
-											<tr>
-												<th>Novel Name</th>
-												<th>Author</th>
-												<th>Genre</th>
-												<th>Rating</th>
-											</tr>
-										</thead>
+		<c:when test="${! empty NovelsByGenre}">
+			<div class="row" id="row1">
+				<div class="col s12 m6" id="result1">
+					<div class="card blue lighten-3" id="card-table1">
+						<div class="card-content Black-text">
+							<table class="bordered" id="table1">
 
-										<c:forEach var="temp" items="${NovelsByRating}">
-											<tbody>
-												<tr>
-													<td><a href="${temp.link}">${temp.novelName}</a></td>
-													<td>${temp.author}</td>
-													<td>${temp.genre}</td>
-													<td>${temp.rating }</td>
-												</tr>
-											</tbody>
-										</c:forEach>
-										</div>
-										</c:when>
-										</c:choose>
-										<c:choose>
-											<c:when test="${! empty RandomNovel}">
-												<table>
-													<thead>
-														<tr>
-															<th>Novel Name</th>
-															<th>Author</th>
-															<th>Genre</th>
-															<th>Rating</th>
-														</tr>
-													</thead>
+								<thead>
+									<th data-field="id">Novel Name</th>
+									<th data-field="name">Author</th>
+									<th data-field="name">Genre</th>
+									<th data-field="name">Rating</th>
+								</thead>
 
-														<tbody>
-															<tr>
-																<td><a href="${temp.link}">${RandomNovel.novelName}</a></td>
-																<td>${RandomNovel.author}</td>
-																<td>${RandomNovel.genre}</td>
-																<td>${RandomNovel.rating }</td>
-															</tr>
-														</tbody>
-												
-													</div>
-													</c:when>
-													</c:choose>
+								<c:forEach var="temp" items="${NovelsByGenre}">
+									<tbody>
+										<tr>
+											<td><a href="${temp.link}">${temp.novelName}</a></td>
+											<td>${temp.author}</td>
+											<td>${temp.genre}</td>
+											<td>${temp.rating }</td>
+										</tr>
+									</tbody>
+								</c:forEach>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</c:when>
+	</c:choose>
+
+
+	<c:choose>
+		<c:when test="${! empty NovelsByRating}">
+			<div class="row" id="row1">
+				<div class="col s12 m6" id="result1">
+					<div class="card blue lighten-3" id="card-table1">
+						<div class="card-content Black-text">
+							<table class="bordered" id="table1">
+
+								<thead>
+									<th data-field="id">Novel Name</th>
+									<th data-field="name">Author</th>
+									<th data-field="name">Genre</th>
+									<th data-field="name">Rating</th>
+								</thead>
+
+								<c:forEach var="temp" items="${NovelsByRating}">
+									<tbody>
+										<tr>
+											<td><a href="${temp.link}">${temp.novelName}</a></td>
+											<td>${temp.author}</td>
+											<td>${temp.genre}</td>
+											<td>${temp.rating }</td>
+										</tr>
+									</tbody>
+								</c:forEach>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</c:when>
+	</c:choose>
+	<c:choose>
+		<c:when test="${! empty RandomNovel}">
+
+			<div class="row" id="row1">
+				<div class="col s12 m6" id="result1">
+					<div class="card blue lighten-3" id="card-table1">
+						<div class="card-content Black-text">
+							<table class="bordered" id="table1">
+								<table>
+									<thead>
+										<tr>
+											<th>Novel Name</th>
+											<th>Author</th>
+											<th>Genre</th>
+											<th>Rating</th>
+										</tr>
+									</thead>
+
+									<tbody>
+										<tr>
+											<td><a href="${temp.link}">${RandomNovel.novelName}</a></td>
+											<td>${RandomNovel.author}</td>
+											<td>${RandomNovel.genre}</td>
+											<td>${RandomNovel.rating }</td>
+										</tr>
+									</tbody>
+								</table>
+								</div>
+								</div>
+								</div>
+								</div>
+								</c:when>
+								</c:choose>
 </body>
 </html>

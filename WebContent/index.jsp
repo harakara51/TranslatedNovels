@@ -18,16 +18,17 @@
 <link href="css/animate.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
-	<div class="navbar-fixed">
+		<div class="navbar-fixed">
 		<nav>
-		<div class="nav-wrapper green darken-3">
-			<a href="#!" class="brand-logo">Transalated Novels</a>
-			<ul class="right hide-on-med-and-down">
-				<li class="active"><a href="collapsible.html">Home</a></li>
-				<li><a href="About.html">About us</a></li>
+			<div class="nav-wrapper green darken-3">
+				<a href="#!" class="brand-logo">Translated Novels</a>
+				<ul class="right hide-on-med-and-down">
+					<li class="active"><a href="index.jsp">Home</a></li>
+					<li><a href="addNovel.jsp">Add a Novel</a></li>
+					<li><a href="About.html">About us</a></li>
 
-			</ul>
-		</div>
+				</ul>
+			</div>
 		</nav>
 	</div>
 	<div class="container">
@@ -96,7 +97,7 @@
 			<div class="col s4" id ="box1">
 				<div class="card  blue lighten-5">
 					<div class="card-content Black-text">
-						<span class="card-title">Choose a radom novel</span>
+						<span class="card-title">Choose a random novel</span>
 						<form action="GetNovel.do"  method="GET" id="language">
 							<label>Click to get random novel</label>
 								
