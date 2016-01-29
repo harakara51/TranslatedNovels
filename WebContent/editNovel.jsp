@@ -36,26 +36,26 @@
 
 		<div class="card" id="card-table3">
 			<div class="card-content Black-text">
-    <form class="col s12" id ="addNovel" action="Novel.do" name ="addNovel" method="POST" >
+    <form class="col s12" id ="addNovel" action="Novel.do" name ="editNovel" value ="${Novel.novelName}"  method="POST" >
       <div class="row">
         <div class="input-field col s4">
         
-          <input  id="NovelName" type="text" name="novelName" class="validate">
-          <label class="active" for="NovelName">Novel Name</label>
+          <input disabled value="${Novel.novelName}" id="NovelName" type="text" name="novelName" value = "${Novel.novelName}" class="validate">
+          <label class="active" for="NovelName">Novel name</label>
         </div>
         <div class="input-field col s4">
-          <input id="Author" type="text" name ="author" class="validate">
+          <input disabled value="${Novel.author}" id="Author" type="text" name ="author" value = "${Novel.author}" class="validate">
           <label class="active" for="Author">Author</label>
         </div>
      
         <div class="input-field col s4">
-          <input id="language" type="text" name ="language" class="validate">
+          <input disabled value="${Novel.language}" id="language" type="text" name ="language" value ="{Novel.language}" class="validate">
           <label  class="active" for="Language">Original Language</label>
         </div>
       
       <div class="row">
         <div class="input-field col s12">
-          <input id="link" type="text" name ="link" class="validate">
+          <input disabled value="${Novel.link}" id="link" type="text" name ="link" value ="${Novel.link}" class="validate">
           <label class="active" for="link">link</label>
         </div>
       </div>
@@ -86,7 +86,7 @@
       </div>
         <div class="row">
         <div class="input-field col s12">
-          <textarea rows="10" cols="100"  name ="Sypnosis" id ="sypnosis">
+          <textarea disabled value="${Novel.sypnosis}" rows="10" cols="100"  name ="Sypnosis" value = "${Novel.sypnosis}"id ="sypnosis">
    		  
           </textarea>
           <label class="active" for="sypnosis">Sypnosis</label>

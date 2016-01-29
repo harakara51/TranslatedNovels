@@ -137,9 +137,49 @@ public class NovelController
 		System.out.println("the size of the reading list is now : " + List.size());
 		ModelAndView mv = new ModelAndView();
 	mv.setViewName("results3.jsp");
-//		mv.addObject("readinglist2", NovelDAO.getNovelByName(novel));
+	mv.addObject("readinglist2", NovelDAO.getNovelByName(novel));
 
 		return mv;
 	}
+	
+	@RequestMapping(path = "GetNovel.do", params = "EditNovel", method = RequestMethod.GET)
+	public ModelAndView getEditNovel(@RequestParam("EditNovel") String novel)
+	{	
+		System.out.println("test in edit Novel");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("editNovel.jsp");
+		mv.addObject("Novel", NovelDAO.getNovelByName(novel));
+
+		return mv;
+	}
+	
+	@RequestMapping(path = "Novel.do", params = "editNovel", method = RequestMethod.POST)
+	public ModelAndView geteditNewNovel(NovelBean novelBean,
+			@ModelAttribute("masterList") ArrayList<NovelBean> masterList, @RequestParam("editNovel") String novel)
+	{
+	int position=0;
+		for (int i=0; i <masterList.size(); i++)
+		{
+			if((masterList.get(i).getNovelName().trim()).equals(novel.trim()))
+			{
+				position = i;
+				break;
+			}
+		
+		}
+		
+		
+		System.out.println(masterList.size());
+		masterList.add(novelBean);
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("results.jsp");
+		mv.addObject("IDCounter", counter);
+
+		return mv;
+	}
+	
+	
 
 }

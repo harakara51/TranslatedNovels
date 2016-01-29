@@ -77,7 +77,17 @@
 									
 									</tr>	
 									<tr>
-									<td colspan ="5">Edit </td>
+									<td colspan ="5">
+									<form id ="readmore" action="GetNovel.do" name ="editNovel"  value="${Novel.novelName}" method="GET">
+										<button class="btn waves-effect waves-light blue darken-2" value="${Novel.novelName}"
+								type="submit" name ="EditNovel" id ="languageButton">
+								Edit Novel <i class="material-icons right">input</i>
+										<%-- 	    <button class="btn waves-effect waves-light blue darken-2" value="${temp.novelName}"
+											type="submit" id ="ReadMOREButton">
+								 --%>
+								 </button>
+								</form>
+								 </td>
 									<td colspan ="3">Rate</td>
 									
 									</tr>	
