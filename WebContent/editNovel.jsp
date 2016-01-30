@@ -26,6 +26,7 @@
 				<a href="#!" class="brand-logo">Translated Novels</a>
 				<ul class="right hide-on-med-and-down">
 					<li><a href="index.jsp">Home</a></li>
+					<li><a href="results3.jsp">Reading list</a></li>
 					<li class="active"><a href="addNovel.jsp">Add a Novel</a></li>
 					<li><a href="About.html">About us</a></li>
 
@@ -34,13 +35,17 @@
 		</nav>
 	</div>
 
-		<div class="card" id="card-table3">
+<div class="card" id="card-table3">
 			<div class="card-content Black-text">
-    <form class="col s12" id ="addNovel" action="Novel.do" name ="editNovel" value ="${Novel.novelName}"  method="POST" >
+		
+			
+			
+			
+ <form class="col s12" id ="addNovel" action="Novel.do" name ="te"  method="POST" >
       <div class="row">
         <div class="input-field col s4">
         
-          <input disabled value="${Novel.novelName}" id="NovelName" type="text" name="novelName" value = "${Novel.novelName}" class="validate">
+          <input id="NovelName" type="text" name="novelName" value = "${Novel.novelName}" class="validate">
           <label class="active" for="NovelName">Novel name</label>
         </div>
         <div class="input-field col s4">
@@ -69,7 +74,7 @@
           <label class="active" for="TranslatedStatus">Translated status</label>
         </div>
         <div class="input-field col s4">
-          <input id="genre" type="text" name = "genre" class="validate">
+          <input disabled value="${Novel.genre}" id="genre" type="text" value ="${Novel.genre}" name = "genre" class="validate">
           <label class="active" for="genre">Genre</label>
         </div>
       </div>
@@ -92,9 +97,10 @@
           <label class="active" for="sypnosis">Sypnosis</label>
         </div>
       </div>
-      <button class="btn waves-effect waves-light blue darken-2" value="Get Novels"
-								type="submit" name="submitNovel" id ="languageButton">
+      <button class="btn waves-effect waves-light blue darken-2"  value ="${Novel.novelName}"
+								type="submit" name ="submitchangedNovel" id ="languageButton">
 								Submit <i class="material-icons right">send</i>
+			</button>					
     </form>
     </div>
     </div>

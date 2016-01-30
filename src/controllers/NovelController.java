@@ -2,7 +2,10 @@ package controllers;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import Data.NovelBean;
 import Data.NovelDAO;
 import Data.NovelFileDAO;
@@ -31,18 +34,22 @@ public class NovelController
 	}
 
 	@ModelAttribute("readingList")
-	public List<NovelBean> createReadingListObject()
+	public Set<NovelBean> createReadingListObject()
 	{
 		
-		List<NovelBean> readingList = new ArrayList<>();
+		Set<NovelBean> readingList = new HashSet();
 		return readingList;
 	}
 	@ModelAttribute("masterlist")
 	public List<NovelBean> createMastList()
 	{
-		System.out.println("in creating masterlist");
 		List<NovelBean> masterList = new ArrayList<>();
-		//List<NovelBean> temp2 = NovelDAO.getNovels();
+		List<NovelBean> temp2 = NovelDAO.getNovels();
+		for (NovelBean novelBean : temp2)
+		{
+			masterList.add(novelBean);
+		}
+		
 		
 		return masterList;
 	}
@@ -91,9 +98,9 @@ public class NovelController
 		return mv;
 	}
 
-	@RequestMapping(path = "Novel.do", params = "submitNovel", method = RequestMethod.POST)
+	@RequestMapping(path = "Novel.do", params = "submitNovel", method = RequestMethod.GET)
 	public ModelAndView getAddNewNovel(NovelBean novelBean,
-			@ModelAttribute("masterList") ArrayList<NovelBean> masterList, @ModelAttribute("IDCounter") int counter)
+			@ModelAttribute("masterlist") ArrayList<NovelBean> masterList, @ModelAttribute("IDCounter") int counter)
 	{
 	System.out.println("in adding novel method");
 	System.out.println(counter);
@@ -112,7 +119,7 @@ public class NovelController
 	System.out.println(masterList.size() + temp2.size());
 		ModelAndView mv = new ModelAndView();
 		
-		mv.setViewName("results.jsp");
+		mv.setViewName("index.jsp");
 		mv.addObject("IDCounter", counter);
 
 		return mv;
@@ -129,10 +136,10 @@ public class NovelController
 	}
 	
 	@RequestMapping(path = "GetNovel.do", params = "addtoReadingList", method = RequestMethod.GET)
-	public ModelAndView getReadingLIst(@RequestParam("addtoReadingList") String novel, @ModelAttribute("readingList") ArrayList<NovelBean> List)
+	public ModelAndView getReadingLIst(@RequestParam("addtoReadingList") String novel, @ModelAttribute("readingList") Set<NovelBean> List)
 	{
 
-	
+	int counter =0;
 		List.add(NovelDAO.getNovelByName(novel));
 		System.out.println("the size of the reading list is now : " + List.size());
 		ModelAndView mv = new ModelAndView();
@@ -145,7 +152,6 @@ public class NovelController
 	@RequestMapping(path = "GetNovel.do", params = "EditNovel", method = RequestMethod.GET)
 	public ModelAndView getEditNovel(@RequestParam("EditNovel") String novel)
 	{	
-		System.out.println("test in edit Novel");
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("editNovel.jsp");
 		mv.addObject("Novel", NovelDAO.getNovelByName(novel));
@@ -153,33 +159,42 @@ public class NovelController
 		return mv;
 	}
 	
-	@RequestMapping(path = "Novel.do", params = "editNovel", method = RequestMethod.POST)
-	public ModelAndView geteditNewNovel(NovelBean novelBean,
-			@ModelAttribute("masterList") ArrayList<NovelBean> masterList, @RequestParam("editNovel") String novel)
+	@RequestMapping(path = "Novel.do", params = "submitchangedNovel", method = RequestMethod.POST)
+	public ModelAndView geteditNewNovel(@ModelAttribute("masterlist") ArrayList<NovelBean> masterList, @RequestParam("Translator") String Translator,
+			@RequestParam("rating") Double rating,@RequestParam("tags") String tags, @RequestParam("translationStatus") String translationStatus, @RequestParam("novelName") String novelName)
 	{
-	int position=0;
-		for (int i=0; i <masterList.size(); i++)
-		{
-			if((masterList.get(i).getNovelName().trim()).equals(novel.trim()))
-			{
-				position = i;
-				break;
-			}
+		System.out.println("In editing book method");
+		NovelBean test =NovelDAO.getNovelByName(novelName);
+		test.setTranslationStatus(translationStatus);
+		test.setRating(rating);
+		test.setTranslator(Translator);
+		test.setTags(tags);
 		
-		}
+		masterList.add(test);
 		
-		
-		System.out.println(masterList.size());
-		masterList.add(novelBean);
 		
 		ModelAndView mv = new ModelAndView();
 		
-		mv.setViewName("results.jsp");
-		mv.addObject("IDCounter", counter);
+		mv.setViewName("index.jsp");
+	//	mv.addObject("Novel", NovelDAO.getNovelByName(novel));
+		return mv;
+	}
+	@RequestMapping(path = "GetNovel.do", params = "removeFromMasterList", method = RequestMethod.GET)
+	public ModelAndView getRemoveBookfromReadlinglist(@RequestParam("removeFromMasterList") String novel, @ModelAttribute("readingList") Set<NovelBean> List)
+	{
+	
+	
+		System.out.println("the size of the reading list before removing: " + List.size());
+	System.out.println("The novel name is " + novel);
+	//List.remove(1);
+		List.remove(NovelDAO.getNovelByName(novel));
+		System.out.println("the size of the reading list is now : " + List.size());
+		ModelAndView mv = new ModelAndView();
+	mv.setViewName("results3.jsp");
+	mv.addObject("readinglist2", NovelDAO.getNovelByName(novel));
 
 		return mv;
 	}
-	
 	
 
 }

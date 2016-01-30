@@ -26,6 +26,7 @@
 				<a href="#!" class="brand-logo">Translated Novels</a>
 				<ul class="right hide-on-med-and-down">
 					<li><a href="index.jsp">Home</a></li>
+					<li><a href="results3.jsp">Reading list</a></li>
 					<li class="active"><a href="addNovel.jsp">Add a Novel</a></li>
 					<li><a href="About.html">About us</a></li>
 
@@ -36,7 +37,7 @@
 
 		<div class="card" id="card-table3">
 			<div class="card-content Black-text">
-    <form class="col s12" id ="addNovel" action="Novel.do" name ="addNovel" method="POST" >
+    <form class="col s12" id ="addNovel" action="Novel.do" method="GET" >
       <div class="row">
         <div class="input-field col s4">
         
@@ -53,7 +54,7 @@
           <label  class="active" for="Language">Original Language</label>
         </div>
       
-      <div class="row">
+     <div class="row">
         <div class="input-field col s12">
           <input id="link" type="text" name ="link" class="validate">
           <label class="active" for="link">link</label>
@@ -64,7 +65,7 @@
           <input id="disabled" name = "Translator" type="text" class="validate">
           <label class="active" for="TranslatedBy">Translated By</label>
         </div>
-        <div class="input-field col s4">
+     <div class="input-field col s4">
           <input id="disabled" name = "translationStatus" type="text" class="validate">
           <label class="active" for="TranslatedStatus">Translated status</label>
         </div>
@@ -73,16 +74,17 @@
           <label class="active" for="genre">Genre</label>
         </div>
       </div>
-       <div class="row">
-       <div class="input-field col s4">
-          <input id="rating" type="number" name ="rating" class="validate">
+        <div class="row">
+      <div class="input-field col s4">
+          <input id="rating" type="number" name ="rating">
           <label class="active" for="rating">Your Rating</label>
         </div>
-      <div class="input-field col s8">
+     
+     <div class="input-field col s8">
           <input id="tags" type="text" name = "tags" class="validate">
           <label class="active" for="tags">Tags</label>
-        </div>
-       
+        </div> 
+        
       </div>
         <div class="row">
         <div class="input-field col s12">
@@ -92,9 +94,19 @@
           <label class="active" for="sypnosis">Sypnosis</label>
         </div>
       </div>
-      <button class="btn waves-effect waves-light blue darken-2" value="Get Novels"
-								type="submit" name="submitNovel" id ="languageButton">
+        <div class="row">
+        <div class="input-field col s6">
+      <button class="btn waves-effect waves-light blue darken-2" name="submitNovel" value="Get Novels"
+								type="submit"  id ="languageButton">
 								Submit <i class="material-icons right">send</i>
+		</div>
+		<div class="input-field col s6">
+		<button class="btn waves-effect waves-light red value="${temp.novelName}"
+								type="submit" name ="removeFromReadingList" id ="languageButton">
+								Remove <i class="material-icons right">delete</i>
+		 </button>
+	</div>	
+								
     </form>
     </div>
     </div>

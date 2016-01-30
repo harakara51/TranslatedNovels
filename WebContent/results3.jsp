@@ -36,31 +36,45 @@
 	</div>
 
 
-				<div class="col s4 m2" id="result1.5">
-					<div class="card blue lighten-3" id="card-table1">
-					<table class="bordered" id="table1">
+	<div class="col s4 m2" id="result1.5">
+		<div class="card blue lighten-3" id="card-table5">
+			<table class="bordered" id="table1">
 
-								<thead>
-									<th data-field="id">Novel Name</th>
-									
-								</thead>
+				<thead>
+					<th data-field="id">My reading list</th>
 
-								<c:forEach var="temp" items="${readingList}">
-									<tbody>
-										<tr>
-											<td><a href="${temp.link}">${temp.novelName}</a></td>
-											
-										</tr>
-									</tbody>
-								</c:forEach>
-					
+				</thead>
+
+				<c:forEach var="temp" items="${readingList}">
+					<tbody>
+						<tr>
+							<td><a href="${temp.link}">${temp.novelName}</a></td>
+							<td>
+								<form id="readmore" action="GetNovel.do" name="readmore"
+									value="${temp.novelName}" method="GET">
+									<button class="btn waves-effect waves-light blue darken-2"
+										value="${temp.novelName}" type="submit" name="ReadMORE"
+										id="languageButton">
+										Read More <i class="material-icons right">send</i>
+										<%-- 	    <button class="btn waves-effect waves-light blue darken-2" value="${temp.novelName}"
+											type="submit" id ="ReadMOREButton">
+								 --%>
+									</button>
+								</form>
+							</td>
+							<td>
+								<form id="readmore" action="GetNovel.do" method="GET">
+									<button class="btn waves-effect waves-light red value="
+value =	"${temp.novelName}" type="submit" name="removeFromMasterList">
+										Remove <i class="material-icons right">delete</i>
+
+									</button>
+								</form>
+							</td>
+					</tbody>
+				</c:forEach>
+
 				</div>
 				<div>
-
-
-
-
-
-
 </body>
 </html>
