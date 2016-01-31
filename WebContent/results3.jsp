@@ -36,9 +36,8 @@
 	</div>
 
 
-	<div class="col s4 m2" id="result1.5">
 		<div class="card orange accent-2" id="card-table5">
-			<table class="bordered" id="table1">
+		<table class="bordered" id="table1">
 
 				<thead>
 					<th data-field="id">My reading list</th>
@@ -65,7 +64,7 @@
 							<td>
 								<form id="readmore" action="GetNovel.do" method="GET">
 									<button class="btn waves-effect waves-light red value="
-value =	"${temp.novelName}" type="submit" name="removeFromMasterList">
+value =	"${temp.novelName}" type="submit" name="removeFromReadingList">
 										Remove <i class="material-icons right">delete</i>
 
 									</button>
@@ -75,6 +74,10 @@ value =	"${temp.novelName}" type="submit" name="removeFromMasterList">
 				</c:forEach>
 					</div>
 				<div>
+
+
+
+
 
 </body>
 </html>

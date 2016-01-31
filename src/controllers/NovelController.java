@@ -4,7 +4,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.validation.Valid;
 
 import Data.NovelBean;
 import Data.NovelDAO;
@@ -12,6 +22,7 @@ import Data.NovelFileDAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +34,9 @@ import org.springframework.web.servlet.ModelAndView;
 @SessionAttributes({ "IDCounter","readingList","masterlist", "novelsBylanguage"})
 public class NovelController
 {
+	
+	private String toEmail;
+	private String emailBody;
 	@Autowired
 	private NovelDAO NovelDAO;
 
@@ -90,11 +104,11 @@ public class NovelController
 	}
 
 	@RequestMapping(path = "GetNovel.do", params = "rating", method = RequestMethod.GET)
-	public ModelAndView getByRating(@RequestParam("rating") Double rating)
+	public ModelAndView getByRating(@RequestParam("rating") Double rating2)
 	{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("results.jsp");
-		mv.addObject("NovelsByRating", NovelDAO.getNovelByRating(rating));
+		mv.addObject("NovelsByRating", NovelDAO.getNovelByRating(rating2));
 
 		return mv;
 	}
@@ -160,6 +174,7 @@ public class NovelController
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("readinglist2", NovelDAO.getNovelByName(novel));
 	
+		//SendEmail();
 		mv.addObject("NovelsByLanguage", NovelDAO.getNovelByLanguage(novel));
 		
 		mv.setViewName("index.jsp");
@@ -196,6 +211,8 @@ public class NovelController
 	//	mv.addObject("Novel", NovelDAO.getNovelByName(novel));
 		return mv;
 	}
+	
+	
 	@RequestMapping(path = "GetNovel.do", params = "deleteNovel", method = RequestMethod.GET)
 	public ModelAndView getRemoveBookfromMasterlist(@RequestParam("deleteNovel") String novel, @ModelAttribute("masterlist") ArrayList<NovelBean> MasterList)
 	{
@@ -215,6 +232,72 @@ public class NovelController
 	
 		return mv;
 	}
+	//in method to remove book from reading LIst
+	@RequestMapping(path = "GetNovel.do", params = "removeFromReadingList", method = RequestMethod.GET)
+	public ModelAndView getRemoveBookfromReadinglist(@RequestParam("removeFromReadingList") String novel, @ModelAttribute("readingList") Set<NovelBean> ReadingList)
+	{
+		System.out.println(ReadingList.size());
+		ReadingList.remove(NovelDAO.getNovelByName(novel));
+		System.out.println(ReadingList.size());
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("results3.jsp");
+		return mv;	
+	}
+	
+	public static void SendEmail ()
+	{
+		// Recipient's email ID needs to be mentioned.
+	      String to = "harakara51@gmail.com";//change accordingly
+
+	      // Sender's email ID needs to be mentioned
+	      String from = "hafu52@gmail.com";//change accordingly
+	      final String username = "hafu52@gmail.com";//change accordingly
+	      final String password = "51Keralagon53#";//change accordingly
+
+	      // Assuming you are sending email through relay.jangosmtp.net
+	      String host = "smtp.gmail.com";
+
+	      Properties props = new Properties();
+	      props.put("mail.smtp.auth", "true");
+	      props.put("mail.smtp.starttls.enable", "true");
+	      props.put("mail.smtp.host", host);
+	      props.put("mail.smtp.port", "587");
+
+	      // Get the Session object.
+	      Session session = Session.getInstance(props,
+	      new javax.mail.Authenticator() {
+	         protected PasswordAuthentication getPasswordAuthentication() {
+	            return new PasswordAuthentication(username, password);
+	         }
+	      });
+
+	      try {
+	         // Create a default MimeMessage object.
+	         Message message = new MimeMessage(session);
+
+	         // Set From: header field of the header.
+	         message.setFrom(new InternetAddress(from));
+
+	         // Set To: header field of the header.
+	         message.setRecipients(Message.RecipientType.TO,
+	         InternetAddress.parse(to));
+
+	         // Set Subject: header field
+	         message.setSubject("Your reading list");
+
+	         // Now set the actual message
+	         message.setText("Hello, this is sample for to check send "
+	            + "email using JavaMailAPI ");
+
+	         // Send message
+	         Transport.send(message);
+
+	         System.out.println("Sent message successfully....");
+
+	      } catch (MessagingException e) {
+	            throw new RuntimeException(e);
+	      }
+	   }
+	}
 	
 
-}

@@ -1,18 +1,36 @@
 package Data;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+
 public class NovelBean
 {
+	@Min(0)
+	@Max(500)
 	private int ID;
+	@Size(min=2, max=100)
 	private String novelName;
+	@Size(min=2, max=100)
 	private String author;
+	@Size(min=2, max=100)
 	private String Translator;
+	@Size(min=2, max=100)
 	private String translationProgress;
+	@Size(min=2, max=160)
 	private String link;
+	@Size(min=2, max=100)
 	private String language;
+	@Size(min=2, max=100)
 	private String translationStatus;
+	@Size(min=2, max=200)
 	private String genre;
+	@Size(min=2, max=250)
 	private String tags;
+	@Size(min=2, max=800)
 	private String Sypnosis;
+	@Min(0)
+	@Max(5)
 	private Double rating;
 	
 	public NovelBean ()

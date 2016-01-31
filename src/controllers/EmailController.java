@@ -31,23 +31,23 @@ public class EmailController
 		return readingList;
 	}
 	
-	@RequestMapping(path = "GetNovel.do", params = "addtoReadingList", method = RequestMethod.GET)
-	public ModelAndView getReadingLIst(@RequestParam("addtoReadingList") String novel, @ModelAttribute("readingList") Set<NovelBean> List, 
-			@ModelAttribute("NovelsByLanguage") ArrayList<NovelBean> LanguageList)
-	{
-		
-		
-	
-		
-	int counter =0;
-		List.add(NovelDAO.getNovelByName(novel));
-		System.out.println("the size of the reading list is now : " + List.size());
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("readinglist2", NovelDAO.getNovelByName(novel));
-	
-		mv.addObject("NovelsByLanguage", NovelDAO.getNovelByLanguage(novel));
-		
-		mv.setViewName("index.jsp");
-		return mv;
-	}
+//	@RequestMapping(path = "GetNovel.do", params = "addtoReadingList", method = RequestMethod.GET)
+//	public ModelAndView getReadingLIst(@RequestParam("addtoReadingList") String novel, @ModelAttribute("readingList") Set<NovelBean> List, 
+//			@ModelAttribute("NovelsByLanguage") ArrayList<NovelBean> LanguageList)
+//	{
+//		
+//		
+//	
+//		
+//	int counter =0;
+//		List.add(NovelDAO.getNovelByName(novel));
+//		System.out.println("the size of the reading list is now : " + List.size());
+//		ModelAndView mv = new ModelAndView();
+//		mv.addObject("readinglist2", NovelDAO.getNovelByName(novel));
+//	
+//		mv.addObject("NovelsByLanguage", NovelDAO.getNovelByLanguage(novel));
+//		
+//		mv.setViewName("index.jsp");
+//		return mv;
+//	}
 }

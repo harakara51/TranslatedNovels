@@ -51,8 +51,7 @@
 								<option value="Japanese">Japanese</option>
 							</select>
 						
-							<button class="btn waves-effect waves-light blue darken-2" value="Get Novels"
-								type="submit" id ="languageButton">
+							<button class="btn waves-effect waves-light blue darken-2" type="submit">
 								Submit <i class="material-icons right">send</i>
 							</button>
 						</form>

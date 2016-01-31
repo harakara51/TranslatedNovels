@@ -135,7 +135,7 @@
 							<td>
 								<form id="readmore" action="GetNovel.do" method="GET">
 									<button class="btn waves-effect waves-light red value="
-value =	"${temp.novelName}" type="submit btn-small" name="removeFromMasterList">
+value =	"${temp.novelName}" type="submit btn-small" name="removeFromReadingList">
 									 <i class="material-icons right">delete</i>
 
 									</button>
@@ -261,7 +261,7 @@ Start of Novels By Genre -->
 							<td>
 								<form id="readmore" action="GetNovel.do" method="GET">
 									<button class="btn waves-effect waves-light red value="
-value =	"${temp.novelName}" type="submit btn-small" name="removeFromMasterList">
+value =	"${temp.novelName}" type="submit btn-small" name="removeFromReadingList">
 									 <i class="material-icons right">delete</i>
 
 									</button>
@@ -387,7 +387,7 @@ Start of filer by rating
 							<td>
 								<form id="readmore" action="GetNovel.do" method="GET">
 									<button class="btn waves-effect waves-light red value="
-value =	"${temp.novelName}" type="submit btn-small" name="removeFromMasterList">
+value =	"${temp.novelName}" type="submit btn-small" name="removeFromReadingList">
 									 <i class="material-icons right">delete</i>
 
 									</button>
@@ -509,7 +509,7 @@ value =	"${temp.novelName}" type="submit btn-small" name="removeFromMasterList">
 							<td>
 								<form id="readmore" action="GetNovel.do" method="GET">
 									<button class="btn waves-effect waves-light red value="
-value =	"${temp.novelName}" type="submit btn-small" name="removeFromMasterList">
+value =	"${temp.novelName}" type="submit btn-small" name="removeFromReadingList">
 									 <i class="material-icons right">delete</i>
 
 									</button>
