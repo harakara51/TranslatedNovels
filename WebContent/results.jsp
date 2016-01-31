@@ -28,17 +28,18 @@
 					<li><a href="index.jsp">Home</a></li>
 					<li><a href="addNovel.jsp">Add a Novel</a></li>
 					<li><a href="results3.jsp">Reading list</a></li>
-					<li><a href="About.html">About us</a></li>
+					<li><a href="masterList.jsp">Master List</a></li>
 
 				</ul>
 			</div>
 		</nav>
 	</div>
+	
 	<c:choose>
 		<c:when test="${! empty NovelsByLanguage}">
 			<div class="row" id="row1">
-				<div class="col s12 m6" id="result1">
-					<div class="card blue lighten-3" id="card-table1">
+				<div class="col s6 m6" id="result1">
+					<div class="card orange accent-2" id="card-table1">
 						<div class="card-content Black-text">
 							<table id="table1">
 								<thead>
@@ -58,7 +59,7 @@
 											<td>${temp.genre}</td>
 											<td>${temp.rating }</td>
 										
-											<td rowspan ="2"> 
+											<td rowspan ="1"> 
 											<form id ="readmore" action="GetNovel.do" method="GET">
 											<button class="btn-floating btn-large waves-effect waves-light red" value="${temp.novelName}"
 								type="submit" name ="addtoReadingList" id ="addtoRL">
@@ -71,7 +72,7 @@
 											
 										</tr>
 										<tr id ="readMore"> 
-										<td colspan="4"> 
+										<td colspan="3"> 
 										<form id ="readmore" action="GetNovel.do" name ="readmore"  value="${temp.novelName}" method="GET">
 										<button class="btn waves-effect waves-light blue darken-2" value="${temp.novelName}"
 								type="submit" name ="ReadMORE" id ="languageButton">
@@ -83,6 +84,17 @@
 								</form>
 											</td>
 									
+									<td colspan="2"> 
+										<form id ="readmore" action="GetNovel.do"   value="${temp.novelName}" method="GET">
+										<button class="btn waves-effect waves-light red" value="${temp.novelName}"
+								type="submit" name ="deleteNovel" id ="languageButton">
+								<i class="material-icons right">delete</i>
+										<%-- 	    <button class="btn waves-effect waves-light blue darken-2" value="${temp.novelName}"
+											type="submit" id ="ReadMOREButton">
+								 --%>
+								 </button>
+								</form>
+											</td>
 									
 										</tr> 
 									</tbody>
@@ -91,16 +103,68 @@
 						</div>
 					</div>
 				</div>
+				
+				
+		
+	<div class="col s6 m6" id="result2">
+		<div class="card orange accent-2" id="card-table5">
+			<table class="bordered" id="table1">
+
+				<thead>
+					<th data-field="id" colspan="3">My reading list</th>
+
+				</thead>
+
+				<c:forEach var="temp" items="${readingList}">
+					<tbody>
+						<tr>
+							<td><a href="${temp.link}">${temp.novelName}</a></td>
+							<td>
+								<form id="readmore" action="GetNovel.do" name="readmore"
+									value="${temp.novelName}" method="GET">
+									<button class="btn waves-effect waves-light blue darken-2"
+										value="${temp.novelName}" type="submit" name="ReadMORE"
+										id="languageButton">
+										Read More <i class="material-icons right">send</i>
+										<%-- 	    <button class="btn waves-effect waves-light blue darken-2" value="${temp.novelName}"
+											type="submit" id ="ReadMOREButton">
+								 --%>
+									</button>
+								</form>
+							</td>
+							<td>
+								<form id="readmore" action="GetNovel.do" method="GET">
+									<button class="btn waves-effect waves-light red value="
+value =	"${temp.novelName}" type="submit btn-small" name="removeFromMasterList">
+									 <i class="material-icons right">delete</i>
+
+									</button>
+								</form>
+							</td>
+					</tbody>
+				</c:forEach>
+
+				
+				</table>
+	
+	</div>
+	</div>
+	<!-- 		End of reading list logic	
+		end of Language logic -->		
+				
+				
 			</div>
 		</c:when>
 	</c:choose>
+<!-- 
+Start of Novels By Genre -->	
+	
 	<c:choose>
-
 
 		<c:when test="${! empty NovelsByGenre}">
 			<div class="row" id="row1">
 				<div class="col s12 m6" id="result1">
-					<div class="card blue lighten-3" id="card-table1">
+					<div class="card orange accent-2" id="card-table1">
 						<div class="card-content Black-text">
 							<table class="bordered" id="table1">
 
@@ -118,6 +182,46 @@
 											<td>${temp.author}</td>
 											<td>${temp.genre}</td>
 											<td>${temp.rating }</td>
+											<!-- 
+							adding buttons to each row -->				
+											<td rowspan ="1"> 
+											<form id ="readmore" action="GetNovel.do" method="GET">
+											<button class="btn-floating btn-large waves-effect waves-light red" value="${temp.novelName}"
+								type="submit" name ="addtoReadingList" id ="addtoRL">
+								+ <i class="material-icons right">send</i>
+											
+											<%-- <a  type ="submit" class="btn-floating btn-large waves-effect waves-light red" name ="addtoReadingList" value = "${temp.novelName}">
+											<i class="material-icons">add</i></a> --%>
+											</form>
+											</td>
+											
+										</tr>
+										<tr id ="readMore"> 
+										<td colspan="3"> 
+										<form id ="readmore" action="GetNovel.do" name ="readmore"  value="${temp.novelName}" method="GET">
+										<button class="btn waves-effect waves-light blue darken-2" value="${temp.novelName}"
+								type="submit" name ="ReadMORE" id ="languageButton">
+								Read More <i class="material-icons right">send</i>
+										<%-- 	    <button class="btn waves-effect waves-light blue darken-2" value="${temp.novelName}"
+											type="submit" id ="ReadMOREButton">
+								 --%>
+								 </button>
+								</form>
+											</td>
+									
+									<td colspan="2"> 
+										<form id ="readmore" action="GetNovel.do"   value="${temp.novelName}" method="GET">
+										<button class="btn waves-effect waves-light red" value="${temp.novelName}"
+								type="submit" name ="deleteNovel" id ="languageButton">
+								<i class="material-icons right">delete</i>
+										<%-- 	    <button class="btn waves-effect waves-light blue darken-2" value="${temp.novelName}"
+											type="submit" id ="ReadMOREButton">
+								 --%>
+								 </button>
+								</form>
+											</td>
+									
+											
 										</tr>
 									</tbody>
 								</c:forEach>
@@ -125,19 +229,68 @@
 						</div>
 					</div>
 				</div>
+				<!-- 
+				Starting reading List logic -->
+						
+	<div class="col s6 m6" id="result2">
+		<div class="card orange accent-2" id="card-table5">
+			<table class="bordered" id="table1">
+
+				<thead>
+					<th data-field="id" colspan="3">My reading list</th>
+
+				</thead>
+
+				<c:forEach var="temp" items="${readingList}">
+					<tbody>
+						<tr>
+							<td><a href="${temp.link}">${temp.novelName}</a></td>
+							<td>
+								<form id="readmore" action="GetNovel.do" name="readmore"
+									value="${temp.novelName}" method="GET">
+									<button class="btn waves-effect waves-light blue darken-2"
+										value="${temp.novelName}" type="submit" name="ReadMORE"
+										id="languageButton">
+										Read More <i class="material-icons right">send</i>
+										<%-- 	    <button class="btn waves-effect waves-light blue darken-2" value="${temp.novelName}"
+											type="submit" id ="ReadMOREButton">
+								 --%>
+									</button>
+								</form>
+							</td>
+							<td>
+								<form id="readmore" action="GetNovel.do" method="GET">
+									<button class="btn waves-effect waves-light red value="
+value =	"${temp.novelName}" type="submit btn-small" name="removeFromMasterList">
+									 <i class="material-icons right">delete</i>
+
+									</button>
+								</form>
+							</td>
+					</tbody>
+				</c:forEach>
+
 				
-
+				</table>
+	
+	</div>
+	</div>
+				<!-- 
+				
+		end of readlist logic -->		
+				
 			</div>
-
-		</c:when>
+	</c:when>
 	</c:choose>
-
-
+	
+	<!-- 
+Start of filer by rating
+ -->
 	<c:choose>
 		<c:when test="${! empty NovelsByRating}">
 			<div class="row" id="row1">
 				<div class="col s12 m6" id="result1">
-					<div class="card blue lighten-3" id="card-table1">
+					<div class="card orange accent-2" id="card-table1">
 						<div class="card-content Black-text">
 							<table class="bordered" id="table1">
 
@@ -155,6 +308,46 @@
 											<td>${temp.author}</td>
 											<td>${temp.genre}</td>
 											<td>${temp.rating }</td>
+									<!-- 
+				addig button to each row -->					
+											
+											<td rowspan ="1"> 
+											<form id ="readmore" action="GetNovel.do" method="GET">
+											<button class="btn-floating btn-large waves-effect waves-light red" value="${temp.novelName}"
+								type="submit" name ="addtoReadingList" id ="addtoRL">
+								+ <i class="material-icons right">send</i>
+											
+											<%-- <a  type ="submit" class="btn-floating btn-large waves-effect waves-light red" name ="addtoReadingList" value = "${temp.novelName}">
+											<i class="material-icons">add</i></a> --%>
+											</form>
+											</td>
+											
+										</tr>
+										<tr id ="readMore"> 
+										<td colspan="3"> 
+										<form id ="readmore" action="GetNovel.do" name ="readmore"  value="${temp.novelName}" method="GET">
+										<button class="btn waves-effect waves-light blue darken-2" value="${temp.novelName}"
+								type="submit" name ="ReadMORE" id ="languageButton">
+								Read More <i class="material-icons right">send</i>
+										<%-- 	    <button class="btn waves-effect waves-light blue darken-2" value="${temp.novelName}"
+											type="submit" id ="ReadMOREButton">
+								 --%>
+								 </button>
+								</form>
+											</td>
+									
+									<td colspan="2"> 
+										<form id ="readmore" action="GetNovel.do"   value="${temp.novelName}" method="GET">
+										<button class="btn waves-effect waves-light red" value="${temp.novelName}"
+								type="submit" name ="deleteNovel" id ="languageButton">
+								<i class="material-icons right">delete</i>
+										<%-- 	    <button class="btn waves-effect waves-light blue darken-2" value="${temp.novelName}"
+											type="submit" id ="ReadMOREButton">
+								 --%>
+								 </button>
+								</form>
+											</td>
+									
 										</tr>
 									</tbody>
 								</c:forEach>
@@ -162,6 +355,54 @@
 						</div>
 					</div>
 				</div>
+				<!-- 
+				starting of readlist list cart logic -->
+						
+	<div class="col s6 m6" id="result2">
+		<div class="card orange accent-2" id="card-table5">
+			<table class="bordered" id="table1">
+
+				<thead>
+					<th data-field="id" colspan="3">My reading list</th>
+
+				</thead>
+
+				<c:forEach var="temp" items="${readingList}">
+					<tbody>
+						<tr>
+							<td><a href="${temp.link}">${temp.novelName}</a></td>
+							<td>
+								<form id="readmore" action="GetNovel.do" name="readmore"
+									value="${temp.novelName}" method="GET">
+									<button class="btn waves-effect waves-light blue darken-2"
+										value="${temp.novelName}" type="submit" name="ReadMORE"
+										id="languageButton">
+										Read More <i class="material-icons right">send</i>
+										<%-- 	    <button class="btn waves-effect waves-light blue darken-2" value="${temp.novelName}"
+											type="submit" id ="ReadMOREButton">
+								 --%>
+									</button>
+								</form>
+							</td>
+							<td>
+								<form id="readmore" action="GetNovel.do" method="GET">
+									<button class="btn waves-effect waves-light red value="
+value =	"${temp.novelName}" type="submit btn-small" name="removeFromMasterList">
+									 <i class="material-icons right">delete</i>
+
+									</button>
+								</form>
+							</td>
+					</tbody>
+				</c:forEach>
+
+				
+				</table>
+	
+	</div>
+	</div>
+	<!-- 
+	end of reading list logic -->			
 			</div>
 
 		</c:when>
@@ -171,7 +412,7 @@
 
 			<div class="row" id="row1">
 				<div class="col s12 m6" id="result1">
-					<div class="card blue lighten-3" id="card-table1">
+					<div class="card orange accent-2" id="card-table1">
 						<div class="card-content Black-text">
 							<table class="bordered" id="table1">
 								<table>
@@ -190,12 +431,104 @@
 											<td>${RandomNovel.author}</td>
 											<td>${RandomNovel.genre}</td>
 											<td>${RandomNovel.rating }</td>
+											
+											
+											<td rowspan ="1"> 
+											<form id ="readmore" action="GetNovel.do" method="GET">
+											<button class="btn-floating btn-large waves-effect waves-light red" value="${temp.novelName}"
+								type="submit" name ="addtoReadingList" id ="addtoRL">
+								+ <i class="material-icons right">send</i>
+											
+											<%-- <a  type ="submit" class="btn-floating btn-large waves-effect waves-light red" name ="addtoReadingList" value = "${temp.novelName}">
+											<i class="material-icons">add</i></a> --%>
+											</form>
+											</td>
+											
+										</tr>
+										<tr id ="readMore"> 
+										<td colspan="3"> 
+										<form id ="readmore" action="GetNovel.do" name ="readmore"  value="${temp.novelName}" method="GET">
+										<button class="btn waves-effect waves-light blue darken-2" value="${temp.novelName}"
+								type="submit" name ="ReadMORE" id ="languageButton">
+								Read More <i class="material-icons right">send</i>
+										<%-- 	    <button class="btn waves-effect waves-light blue darken-2" value="${temp.novelName}"
+											type="submit" id ="ReadMOREButton">
+								 --%>
+								 </button>
+								</form>
+											</td>
+									
+									<td colspan="2"> 
+										<form id ="readmore" action="GetNovel.do"   value="${temp.novelName}" method="GET">
+										<button class="btn waves-effect waves-light red" value="${temp.novelName}"
+								type="submit" name ="deleteNovel" id ="languageButton">
+								<i class="material-icons right">delete</i>
+										<%-- 	    <button class="btn waves-effect waves-light blue darken-2" value="${temp.novelName}"
+											type="submit" id ="ReadMOREButton">
+								 --%>
+								 </button>
+								</form>
+											</td>
+									
+											
 										</tr>
 									</tbody>
 								</table>
 								</div>
 								</div>
 								</div>
+								<!-- 
+								Starts reading list cart logic -->
+								
+		<div class="col s6 m6" id="result2">
+		<div class="card orange accent-2" id="card-table5">
+			<table class="bordered" id="table1">
+
+				<thead>
+					<th data-field="id" colspan="3">My reading list</th>
+
+				</thead>
+
+				<c:forEach var="temp" items="${readingList}">
+					<tbody>
+						<tr>
+							<td><a href="${temp.link}">${temp.novelName}</a></td>
+							<td>
+								<form id="readmore" action="GetNovel.do" name="readmore"
+									value="${temp.novelName}" method="GET">
+									<button class="btn waves-effect waves-light blue darken-2"
+										value="${temp.novelName}" type="submit" name="ReadMORE"
+										id="languageButton">
+										Read More <i class="material-icons right">send</i>
+										<%-- 	    <button class="btn waves-effect waves-light blue darken-2" value="${temp.novelName}"
+											type="submit" id ="ReadMOREButton">
+								 --%>
+									</button>
+								</form>
+							</td>
+							<td>
+								<form id="readmore" action="GetNovel.do" method="GET">
+									<button class="btn waves-effect waves-light red value="
+value =	"${temp.novelName}" type="submit btn-small" name="removeFromMasterList">
+									 <i class="material-icons right">delete</i>
+
+									</button>
+								</form>
+							</td>
+					</tbody>
+				</c:forEach>
+
+				
+				</table>
+	
+	</div>
+	</div>							
+								
+								
+								
+								
+								<!-- 
+		end of reading list cart logic -->						
 								</div>
 								</c:when>
 								</c:choose>

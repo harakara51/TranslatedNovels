@@ -27,8 +27,8 @@
 				<ul class="right hide-on-med-and-down">
 					<li><a href="index.jsp">Home</a></li>
 					<li><a href="addNovel.jsp">Add a Novel</a></li>
-					<li><a href="masterList.jsp">Master List</a></li>
-					<li class="active"><a href="results3.jsp">Reading list</a></li>
+					<li class="active"><a href="masterList.jsp">Master List</a></li>
+					<li ><a href="results3.jsp">Reading list</a></li>
 
 				</ul>
 			</div>
@@ -36,19 +36,23 @@
 	</div>
 
 
-	<div class="col s4 m2" id="result1.5">
+	
+				
+				
+				<div class="col s4 m2" id="result1.5">
 		<div class="card orange accent-2" id="card-table5">
 			<table class="bordered" id="table1">
 
 				<thead>
-					<th data-field="id">My reading list</th>
+					<th data-field="id">Master List</th>
 
 				</thead>
 
-				<c:forEach var="temp" items="${readingList}">
+				<c:forEach var="temp" items="${masterlist}">
 					<tbody>
 						<tr>
 							<td id = "tablerow1"><a href="${temp.link}">${temp.novelName}</a></td>
+							<td id = "tablerow1">${temp.language}</td>
 							<td>
 								<form id="readmore" action="GetNovel.do" name="readmore"
 									value="${temp.novelName}" method="GET">
@@ -73,8 +77,8 @@ value =	"${temp.novelName}" type="submit" name="removeFromMasterList">
 							</td>
 					</tbody>
 				</c:forEach>
-					</div>
-				<div>
 
+				</div>
+				<div>
 </body>
 </html>

@@ -25,7 +25,8 @@
 				<ul class="right hide-on-med-and-down">
 					<li class="active"><a href="index.jsp">Home</a></li>
 					<li><a href="addNovel.jsp">Add a Novel</a></li>
-					<li><a href="About.html">About us</a></li>
+					<li><a href="results3.jsp">Reading list</a></li>
+					<li><a href="masterList.jsp">Master List</a></li>
 					 
 
 				</ul>
@@ -37,7 +38,7 @@
 
 		<div class="row" id ="row1">
 			<div class="col s12" id ="box1">
-				<div class="card blue lighten-5">
+				<div class="card orange accent-2">
 					<div class="card-content Black-text">
 						<span class="card-title">Choose by Language</span>
 						<form action="GetNovel.do"  method="GET">
@@ -63,7 +64,7 @@
 <div class="row" id ="row2">
 
 			<div class="col s4" id ="box1">
-				<div class="card  blue lighten-5">
+				<div class="card  orange accent-2">
 					<div class="card-content Black-text">
 						<span class="card-title">Choose by Genre</span>
 						<form action="GetNovel.do"  method="GET" id="language2">
@@ -79,7 +80,7 @@
 			</div>
 		
 			<div class="col s4" id ="box1">
-				<div class="card blue lighten-5">
+				<div class="card orange accent-2">
 					<div class="card-content Black-text">
 						<span class="card-title">Choose by rating</span>
 						<form action="GetNovel.do" method="GET" id="language">
@@ -96,7 +97,7 @@
 				</div>
 			</div>
 			<div class="col s4" id ="box1">
-				<div class="card  blue lighten-5">
+				<div class="card orange accent-2">
 					<div class="card-content Black-text">
 						<span class="card-title">Choose a random novel</span>
 						<form action="GetNovel.do"  method="GET" id="language">

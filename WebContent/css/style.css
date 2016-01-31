@@ -32,6 +32,9 @@ margin: 0 auto;
 	margin-left:  3em;
 
 } 
+#tablerow1 {
+color: black;
+}
 
 #card-table3{
 
@@ -62,4 +65,7 @@ padding: .5em;
 margin:0 auto;
 margin-top: 3em;	
 }
-
+/* #result2 {
+width:70%;
+}
+ */

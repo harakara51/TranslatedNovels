@@ -28,7 +28,7 @@
 					<li><a href="index.jsp">Home</a></li>
 					<li><a href="addNovel.jsp">Add a Novel</a></li>
 					<li><a href="results3.jsp">Reading list</a></li>
-					<li><a href="About.html">About us</a></li>
+					<li><a href="masterList.jsp">Master List</a></li>
 
 				</ul>
 			</div>
@@ -40,7 +40,7 @@
 			<div class="col s12 blue lighten-3" id="result3">
 			</div>
 			
-				<div class="col s12 blue lighten-3" id="result3">
+				<div class="col s12 orange accent-2" id="result3">
 					
 							<table class="bordered" id="table3">
 								<thead>
