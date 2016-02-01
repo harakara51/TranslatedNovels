@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,6 +63,9 @@
 			</div>
 
 </div>
+
+
+
 <div class="row" id ="row2">
 
 			<div class="col s4" id ="box1">
@@ -78,17 +84,20 @@
 				</div>
 			</div>
 		
-			<div class="col s4" id ="box1">
+		
+	
+	<div class="col s4" id ="box1">
 				<div class="card orange accent-2">
 					<div class="card-content Black-text">
 						<span class="card-title">Choose by rating</span>
-						<form action="GetNovel.do" method="GET" id="language">
+						<form action="GetNovel.do" action = "GET">
 							<label>Input Minimum Rating</label> 
-							
-			 <input type="text"	name="rating"/> 
+				
+				<input type = "Number" name="rating">		
+			
 							
 							<button class="btn waves-effect waves-light blue darken-2" value="Get Novels"
-								type="submit" name="action" id ="languageButton">
+								type="submit" >
 								Submit <i class="material-icons right">send</i>
 							</button>
 						</form>

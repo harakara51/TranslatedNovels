@@ -70,8 +70,31 @@ value =	"${temp.novelName}" type="submit" name="removeFromReadingList">
 									</button>
 								</form>
 							</td>
+							
+
 					</tbody>
 				</c:forEach>
+											<tr>
+							
+								<form id="Email" action="GetNovel.do" method="GET">
+	<td colspan="2">
+  							E-mail:
+  						<input type="email" name="email">
+	</td>
+	<td>
+									<button class="btn waves-effect waves-light blue darken-2"
+										value="${temp.novelName}" type="submit" name="Email"
+										id="languageButton">
+										Send Email <i class="material-icons right">send</i>
+										<%-- 	    <button class="btn waves-effect waves-light blue darken-2" value="${temp.novelName}"
+											type="submit" id ="ReadMOREButton">
+								 --%>
+									</button>
+							</td>		
+								</form>
+							
+							</tr>
+						</table>	
 					</div>
 				<div>
 

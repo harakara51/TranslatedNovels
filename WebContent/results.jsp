@@ -48,8 +48,7 @@
 										<th data-field="name">Author</th>
 										<th data-field="name">Genre</th>
 										<th data-field="name">Rating</th>
-										<th data-field="name">Add to Reading list</th>
-									</tr>
+											</tr>
 								</thead>
 								<c:forEach var="temp" items="${NovelsByLanguage}">
 									<tbody>
@@ -59,20 +58,11 @@
 											<td>${temp.genre}</td>
 											<td>${temp.rating }</td>
 										
-											<td rowspan ="1"> 
-											<form id ="readmore" action="GetNovel.do" method="GET">
-											<button class="btn-floating btn-large waves-effect waves-light red" value="${temp.novelName}"
-								type="submit" name ="addtoReadingList" id ="addtoRL">
-								+ <i class="material-icons right">send</i>
 											
-											<%-- <a  type ="submit" class="btn-floating btn-large waves-effect waves-light red" name ="addtoReadingList" value = "${temp.novelName}">
-											<i class="material-icons">add</i></a> --%>
-											</form>
-											</td>
 											
 										</tr>
 										<tr id ="readMore"> 
-										<td colspan="3"> 
+										<td colspan="1"> 
 										<form id ="readmore" action="GetNovel.do" name ="readmore"  value="${temp.novelName}" method="GET">
 										<button class="btn waves-effect waves-light blue darken-2" value="${temp.novelName}"
 								type="submit" name ="ReadMORE" id ="languageButton">
@@ -83,8 +73,18 @@
 								 </button>
 								</form>
 											</td>
+											<td rowspan ="1"> 
+											<form id ="readmore" action="GetNovel.do" method="GET">
+											<button class="btn-floating btn-large waves-effect waves-light red" value="${temp.novelName}"
+								type="submit" name ="addtoReadingList" id ="addtoRL">
+								+ <i class="material-icons right">send</i>
+											
+											<%-- <a  type ="submit" class="btn-floating btn-large waves-effect waves-light red" name ="addtoReadingList" value = "${temp.novelName}">
+											<i class="material-icons">add</i></a> --%>
+											</form>
+											</td>
 									
-									<td colspan="2"> 
+									<td colspan="1"> 
 										<form id ="readmore" action="GetNovel.do"   value="${temp.novelName}" method="GET">
 										<button class="btn waves-effect waves-light red" value="${temp.novelName}"
 								type="submit" name ="deleteNovel" id ="languageButton">
@@ -532,5 +532,8 @@ value =	"${temp.novelName}" type="submit btn-small" name="removeFromReadingList"
 								</div>
 								</c:when>
 								</c:choose>
+		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+ <script src="js/materialize.js"></script>
+ <script src="js/init.js"></script>						
 </body>
 </html>

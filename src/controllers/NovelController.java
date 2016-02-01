@@ -35,8 +35,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class NovelController
 {
 	
-	private String toEmail;
-	private String emailBody;
+	private static String toEmail;
+	private static String emailBody;
 	@Autowired
 	private NovelDAO NovelDAO;
 
@@ -67,14 +67,7 @@ public class NovelController
 	{
 		System.out.println("in creating masterList method on top");
 		List<NovelBean> masterList = new ArrayList<>();
-//		List<NovelBean> temp2 = NovelDAO.getNovels();
-//		for (NovelBean novelBean : temp2)
-//		{
-//			masterList.add(novelBean);
-//		}
-		
-		
-		return masterList;
+  		return masterList;
 	}
 
 	@RequestMapping(path = "GetNovel.do", params = "language", method = RequestMethod.GET)
@@ -103,15 +96,17 @@ public class NovelController
 		return mv;
 	}
 
+	
 	@RequestMapping(path = "GetNovel.do", params = "rating", method = RequestMethod.GET)
 	public ModelAndView getByRating(@RequestParam("rating") Double rating2)
 	{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("results.jsp");
 		mv.addObject("NovelsByRating", NovelDAO.getNovelByRating(rating2));
-
 		return mv;
 	}
+	
+	
 	@RequestMapping(path = "GetNovel.do", params = "random", method = RequestMethod.GET)
 	public ModelAndView getByRandom()
 	{
@@ -243,18 +238,35 @@ public class NovelController
 		mv.setViewName("results3.jsp");
 		return mv;	
 	}
+	//in method to send email of reading List
+	@RequestMapping(path = "GetNovel.do", params = "email", method = RequestMethod.GET)
+	public ModelAndView getEmailReadinglist(@RequestParam("email") String sendTo, @ModelAttribute("readingList") Set<NovelBean> ReadingList)
+	{
+		System.out.println("tryinng to send email, list size is :  " + ReadingList.size());
+		toEmail = sendTo;
+		StringBuilder sb = new StringBuilder(); 
+		for (NovelBean s : ReadingList) {
+		    sb.append(s.getNovelName());
+		    sb.append("\n");
+		}
+		emailBody = sb.toString();
+		SendEmail ();
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("index.jsp");
+		return mv;	
+	}
 	
 	public static void SendEmail ()
 	{
-		// Recipient's email ID needs to be mentioned.
-	      String to = "harakara51@gmail.com";//change accordingly
+		
+	      String to = toEmail;
 
-	      // Sender's email ID needs to be mentioned
-	      String from = "hafu52@gmail.com";//change accordingly
+	     
+	      String from = "TranslatedNovels.com";//change accordingly
 	      final String username = "hafu52@gmail.com";//change accordingly
 	      final String password = "51Keralagon53#";//change accordingly
 
-	      // Assuming you are sending email through relay.jangosmtp.net
+	  
 	      String host = "smtp.gmail.com";
 
 	      Properties props = new Properties();
@@ -286,8 +298,9 @@ public class NovelController
 	         message.setSubject("Your reading list");
 
 	         // Now set the actual message
-	         message.setText("Hello, this is sample for to check send "
-	            + "email using JavaMailAPI ");
+	         message.setText("Hello, below is your reading list from translated Novels.com \n "
+	        		 
+	            + emailBody + "\n Thank you and have a good day");
 
 	         // Send message
 	         Transport.send(message);
