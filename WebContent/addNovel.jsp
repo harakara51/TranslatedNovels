@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -37,7 +39,7 @@
 
 		<div class="card" id="card-table3">
 			<div class="card-content Black-text">
-    <form class="col s12" id ="addNovel" action="Novel.do" method="GET" >
+    <form class="col s12" id ="addNovel" action="addNovel.do" method="GET" >
       <div class="row">
         <div class="input-field col s4">
         
@@ -53,7 +55,7 @@
           <input id="language" type="text" name ="language" class="validate">
           <label  class="active" for="Language">Original Language</label>
         </div>
-      
+      </div>
      <div class="row">
         <div class="input-field col s12">
           <input id="link" type="text" name ="link" class="validate">
@@ -99,14 +101,15 @@
       <button class="btn waves-effect waves-light blue darken-2" name="submitNovel" value="Get Novels"
 								type="submit"  id ="languageButton">
 								Submit <i class="material-icons right">send</i>
+		</button>
 		</div>
 		<div class="input-field col s6">
-		<button class="btn waves-effect waves-light red value="${temp.novelName}"
+		<button class="btn waves-effect waves-light red"  value="${temp.novelName}"
 								type="submit" name ="removeFromReadingList" id ="languageButton">
 								Remove <i class="material-icons right">delete</i>
 		 </button>
 	</div>	
-								
+		</div>							
     </form>
     </div>
     </div>

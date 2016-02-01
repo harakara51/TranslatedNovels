@@ -2,6 +2,7 @@ package Data;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
 public class NovelBean
@@ -9,6 +10,7 @@ public class NovelBean
 	@Min(0)
 	@Max(500)
 	private int ID;
+	@Null
 	@Size(min=2, max=100)
 	private String novelName;
 	@Size(min=2, max=100)
